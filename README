@@ -1,0 +1,15 @@
+This is the depository for all code relating to my 2012 paper on the dust events of March-April 2010
+
+First commit June 12,2012
+
+Tools include Scripts for:
+Running multiple Hysplit back trajectories (dustrun_vx.py)
+Reading Aeronet data files and saving to .mat format (aeronet_matfile_generator.py)
+Reading hysplit files and saving to .mat format(hysplit_matfile_generator.py)
+Filtering hysplit files to inlcude only days for which Aeronet data exist(aeronet_dayfilter.py)
+Tracing hysplit trajectories to source ellipses in Gobi and Taklimakan deserts and calculating time and distance in transit (hysplit_traceback_single.py)
+Combining hysplit and aeronet data from multiple stations into a list of dicts of lists and saving results into a .mat file
+A general toolbox for hysplit and aeronet file manipulation (hysplit_tools.py)
+tools for processing aeronet and hysplit files into common format(file_process_tools.py)
+A combined file to do all subsequent steps once aeronet and hysplit and aeronet files ahve been generated (hysplit_aeronet_fullproc.py)
+
