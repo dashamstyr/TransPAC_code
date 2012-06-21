@@ -18,6 +18,7 @@ def lnc_reader(filepath):
 
     #generate a new filename with _proc attached to the end and open both files
     [fname,fext] = filepath.split('.')
+    print 'Processing '+fname
     fout_name = fname+'_proc'
     fout_name = fout_name+'.'+fext
     fin = open(filepath, 'rb')
@@ -51,41 +52,48 @@ def lnc_reader(filepath):
 
     #generate pandas dataframe index by parsing strings into datetime objects
     #note: first entry is the word 'Altitude', last entry is an empty space
-    index = []
-    for i in temparray[1:-1,0]: index.append(parse(i)) 
-
+    indexdat = []
+    for i in temparray[1:-1,0]: indexdat.append(parse(i)) 
+    index = pan.Index(indexdat,name = 'Date Time')
     #generate column headers from altitudes (not including the word 'Altitude'
-    columns = np.array(temparray[0,1:],dtype='float')
-
+    coldat = np.array(temparray[0,1:],dtype='float')
+    columns = pan.Index(coldat,name = temparray[0,0])
     #data for dataframe consists of remaining rows and columns
     data = temparray[1:-1,1:]
 
+    #check data for flags indicating bad results and substitute with NaN
+
+    flags = ['-1.#INF','1.#INF','-1.#IND','1.#IND']
+
+    clean_data = np.copy(data)
+
+    for f in flags: clean_data[data == f] = 'NaN'
+
     #convert data to pandas dataframe
-    df = pan.DataFrame(data,index=index,columns=columns,dtype='float')
+    df = pan.DataFrame(clean_data,index=index,columns=columns,dtype='float')
 
     return df, product     
 
-def maskones(x):
-    if x == 1:
-        return 0
-    else:
-        return 1
 
 def BR_mask(backscatter, data):
     #this function takes a pandas timeseries dataframe representing a table of
     #backscatter ratios and produces a masking dataframe with values of 0 where
     #ratio is identically 1, and 1 elsewhere then applies it to data
-
-    mask = backscatter.apply(maskones)
+    print 'masking data'
+    mask = backscatter.applymap(lambda x: not x == 1)
 
     masked_data = mask*data
 
     return masked_data
 
 if __name__=='__main__':
+    import pandas as pan
 
     BR_filepath = 'C:\Users\User\Dropbox\UBC_03242010_BR1064.txt'
     data_filepath = 'C:\Users\User\Dropbox\UBC_03242010_PR532.txt'
-    dfout, prod = lnc_reader(BR_filepath)
-    dfmasked = BR_mask(dfout, data)
- 
+    maskout, maskprod = lnc_reader(BR_filepath)
+    dataout, dataprod = lnc_reader(data_filepath)
+    dfmasked = BR_mask(maskout, dataout)
+    store = pan.HDFStore('testdat.h5')
+    store['dftest'] = dfmasked.T
+     
