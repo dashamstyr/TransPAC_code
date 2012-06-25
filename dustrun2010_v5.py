@@ -24,15 +24,15 @@ Dalanzadgad = ('DAL',43.577222,104.419167)
 SACOL = ('SAC',35.946,104.137)
 Xiang_he = ('XHE',39.754,116.962)
 
-stations = [Saturna_Island, Chapais]
+stations = [UMBC]
 
 #set heights
 heights = range(1000,10200,200)
 
 #set dates and times
 year = '10'
-month = '04'
-day = range(29,31)
+month = '03'
+day = range(15,32)
 hour = range(0,24,6)
 
 totalruns = len(stations)*len(day)*len(hour)*len(heights)
