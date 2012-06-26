@@ -2,13 +2,13 @@ import sys,os
 import hysplit_tools as tools
 
 # create list of stations in question
-UBC = ('UBC',49.256,-123.250) #done
+UBC = ('UBC',49.256,-123.250) #March
 Whistler = ('WHI',50.128,-122.95) #done
 Egbert = ('EGB',44.232,-79.781) #done
 Yellowknife = ('YKN',62.451,-114.376) #done
 Fort_McMurray = ('FMM',56.752,-111.476) #done
-Kelowna = ('KEL',49.941,-119.400) #done
-Saturna_Island = ('SAT',48.783,-123.133) #done
+Kelowna = ('KEL',49.941,-119.400) #March
+Saturna_Island = ('SAT',48.783,-123.133) #March
 Chapais = ('CHA',49.822,-74.975) #April
 Univ_Leth = ('UOL',49.682,-112.869) #March
 Bratts_Lake = ('BRA',50.279,-104.7) #March
@@ -38,7 +38,7 @@ hour = range(0,24,6)
 totalruns = len(stations)*len(day)*len(hour)*len(heights)
 runs = 0
 
-#select meteorology files
+#select meteorology file
 
 meteo_list = tools.get_files('Select Meteorology Files')
 meteo_files = meteo_list.split()
