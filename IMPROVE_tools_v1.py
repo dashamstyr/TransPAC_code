@@ -8,7 +8,7 @@ def improve_reader(filepath):
     
     print 'Processing '+filepath
 
-    df = pan.read_csv(filepath, index_col=[1,2])
+    df = pan.read_csv(filepath, index_col=[1,2], parse_dates = True)
 
     del df['POC']
     del df['Dataset']
@@ -19,7 +19,7 @@ def improve_reader(filepath):
 if __name__=='__main__':
     import os
     import pandas as pan
-    os.chdir('C:\Users\dashamstyr\Dropbox\TransPAC2010\IMPROVE Data')
+    os.chdir('C:\Users\user\Dropbox\TransPAC2010\IMPROVE Data')
 
     files = os.listdir(os.getcwd())
 
@@ -27,7 +27,7 @@ if __name__=='__main__':
         [fname,fext] = f.split('.')
         if fext == 'txt':
             try:
-                df = pan.concat([df,improve_reader(f)])
+                df = pan.concat([df,improve_reader(f))
             except NameError:
                 df = improve_reader(f)
         

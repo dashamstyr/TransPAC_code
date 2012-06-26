@@ -6,6 +6,9 @@ def Improve_plot(filepath):
     os.chdir(filepath)
     df = pan.load('IMPROVE_data_all.pickle')
 
+    return df
+    #fig = plt.figure()
+
     
 
 
@@ -13,8 +16,8 @@ def Improve_plot(filepath):
 
 
 
-if __name__ == '__mane__':
+if __name__ == '__main__':
 
-    f = 'C:\Users\dashamstyr\Dropbox\TransPAC2010\IMPROVE Data'
+    f = 'C:\Users\user\Dropbox\TransPAC2010\IMPROVE Data'
 
-    Improve_plot(f)
+    df = Improve_plot(f)

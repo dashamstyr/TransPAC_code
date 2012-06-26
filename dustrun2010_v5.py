@@ -2,27 +2,27 @@ import sys,os
 import hysplit_tools as tools
 
 # create list of stations in question
-UBC = ('UBC',49.256,-123.250)
-Whistler = ('WHI',50.128,-122.95)
-Egbert = ('EGB',44.232,-79.781)
-Yellowknife = ('YKN',62.451,-114.376)
-Fort_McMurray = ('FMM',56.752,-111.476)
-Kelowna = ('KEL',49.941,-119.400)
-Saturna_Island = ('SAT',48.783,-123.133)
-Chapais = ('CHA',49.822,-74.975)
+UBC = ('UBC',49.256,-123.250) #done
+Whistler = ('WHI',50.128,-122.95) #done
+Egbert = ('EGB',44.232,-79.781) #done
+Yellowknife = ('YKN',62.451,-114.376) #done
+Fort_McMurray = ('FMM',56.752,-111.476) #done
+Kelowna = ('KEL',49.941,-119.400) #April
+Saturna_Island = ('SAT',48.783,-123.133) #April
+Chapais = ('CHA',49.822,-74.975) #April
 Univ_Leth = ('UOL',49.682,-112.869)
 Bratts_Lake = ('BRA',50.279,-104.7)
 Sioux_Falls = ('SIO',43.736,96.626)
 Trinidad_head = ('TRI',41.054,-124.151)
-UMBC = ('UMB',39.255,-76.709)
+UMBC = ('UMB',39.255,-76.709) #March
 GSFC = ('GSF',38.9925,-76.839833)
-Mauna_Loa = ('MAU',19.539,-155.578003)
-Bonanza_Creek = ('BON',64.742805,-148.316269)
+Mauna_Loa = ('MAU',19.539,-155.578003) #Done
+Bonanza_Creek = ('BON',64.742805,-148.316269) #Done
 
-Beijing = ('BEI',39.977,116.381)
-Dalanzadgad = ('DAL',43.577222,104.419167)
-SACOL = ('SAC',35.946,104.137)
-Xiang_he = ('XHE',39.754,116.962)
+Beijing = ('BEI',39.977,116.381) #Done
+Dalanzadgad = ('DAL',43.577222,104.419167) #Done
+SACOL = ('SAC',35.946,104.137) #April
+Xiang_he = ('XHE',39.754,116.962) #April
 
 stations = [UMBC]
 
