@@ -24,7 +24,7 @@ Dalanzadgad = ('DAL',43.577222,104.419167) #Done
 SACOL = ('SAC',35.946,104.137) #April
 Xiang_he = ('XHE',39.754,116.962) #April
 
-stations = [Univ_Leth, Bratts_Lake]
+stations = [Sioux_Falls]
 
 #set heights
 heights = range(1000,10200,200)
