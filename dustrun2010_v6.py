@@ -1,30 +1,31 @@
 import sys,os
 import hysplit_tools as tools
+import subprocess
 
 # create list of stations in question
-UBC = ('UBC',49.256,-123.250) #March
+UBC = ('UBC',49.256,-123.250) #done
 Whistler = ('WHI',50.128,-122.95) #done
 Egbert = ('EGB',44.232,-79.781) #done
 Yellowknife = ('YKN',62.451,-114.376) #done
 Fort_McMurray = ('FMM',56.752,-111.476) #done
-Kelowna = ('KEL',49.941,-119.400) #March
+Kelowna = ('KEL',49.941,-119.400) #Done
 Saturna_Island = ('SAT',48.783,-123.133) #March
 Chapais = ('CHA',49.822,-74.975) #April
 Univ_Leth = ('UOL',49.682,-112.869) #March
 Bratts_Lake = ('BRA',50.279,-104.7) #March
-Sioux_Falls = ('SIO',43.736,96.626)
-Trinidad_head = ('TRI',41.054,-124.151)
-UMBC = ('UMB',39.255,-76.709) #done
-GSFC = ('GSF',38.9925,-76.839833)
+Sioux_Falls = ('SIO',43.736,96.626) #done
+Trinidad_head = ('TRI',41.054,-124.151) #Done
+UMBC = ('UMB',39.255,-76.709) #Done
+GSFC = ('GSF',38.9925,-76.839833) #April
 Mauna_Loa = ('MAU',19.539,-155.578003) #Done
 Bonanza_Creek = ('BON',64.742805,-148.316269) #Done
 
 Beijing = ('BEI',39.977,116.381) #Done
 Dalanzadgad = ('DAL',43.577222,104.419167) #Done
-SACOL = ('SAC',35.946,104.137) #April
-Xiang_he = ('XHE',39.754,116.962) #April
+SACOL = ('SAC',35.946,104.137) #Done
+Xiang_he = ('XHE',39.754,116.962) #Done
 
-stations = [UBC]
+stations = [Saturna_Island, Univ_Leth, Bratts_Lake]
 
 #set heights
 heights = range(1000,10200,200)
@@ -32,13 +33,13 @@ heights = range(1000,10200,200)
 #set dates and times
 year = '10'
 month = '04'
-day = range(1,31)
+day = range(01,31)
 hour = range(0,24,6)
 
 totalruns = len(stations)*len(day)*len(hour)*len(heights)
 runs = 0
 
-#select meteorology file
+#select meteorology files
 
 meteo_list = tools.get_files('Select Meteorology Files')
 meteo_files = meteo_list.split()
@@ -56,14 +57,17 @@ for s in stations:
                 run_hours = '-240'
                     
                 tools.control_single(s,start_time,run_hours,z,meteo_files,output_dir)
-                os.system('c:/hysplit4/exec/hyts_std')
+                startupinfo = subprocess.STARTUPINFO()
+                startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+                
+                proc = subprocess.call('c:/hysplit4/exec/hyts_std', startupinfo=startupinfo)
                 runs += 1
                 complete = 100.0*runs/totalruns
                 print_time = ' '
                 for n in start_time:
                     print_time += str(n)
                 print s[0]+' '+print_time+' '+str(z)+'m'
-                print str(complete)+' complete'
+                print str(complete)+'% complete'
                     
                 
             
