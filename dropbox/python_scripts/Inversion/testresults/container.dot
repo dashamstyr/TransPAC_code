@@ -1,0 +1,12 @@
+digraph G {
+mu;
+N_1;
+N_0;
+N_2;
+N_1 -> mu  [arrowhead=none];
+N_2 -> mu  [arrowhead=none];
+N_0 -> mu  [arrowhead=none];
+N_0 -> N_1  [arrowhead=none];
+N_2 -> N_1  [arrowhead=none];
+N_2 -> N_0  [arrowhead=none];
+}
